@@ -1,0 +1,19 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
+py_binary(
+    name = "main-bin",
+    srcs = glob(["*.py"]),
+    data = [
+        "ecdict.csv",
+        "@odict//bridge:shared",
+    ],
+    main = "main.py",
+    deps = [
+        "@odict//python",
+    ],
+)
+
+alias(
+    name = "main",
+    actual = "//:main-bin",
+)
